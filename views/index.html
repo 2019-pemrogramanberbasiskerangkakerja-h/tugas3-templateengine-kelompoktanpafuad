@@ -3,8 +3,37 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-  <div class="container">
+  <!-- <div class="container">
     <h1>{{ title }}</h1>
     <p>Welcome to {{ title }}</p>
-  </div>
+  </div> -->
+  <main role="main" class="container" style="padding-top: 90px;">
+      <div class="row" style="padding-bottom: 20px;">
+          <div class="col-12">
+              <div class="text-right">
+                  <a href="/add" class="btn btn-info">
+                      <i class="fa fa-plus mr-2 mb-10"></i> Add New Data
+                  </a>
+              </div>
+          </div>
+      </div>
+      <div class="table-responsive">
+          <table class="table" id="healthTable">
+              <thead>
+                  <tr>
+                      <th class="text-center align-middle" style="width: 5%">Title</th>
+                      <th class="text-center align-middle" style="width: 10%">Year</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {% for movie in movies %}
+                <tr>
+                  <td class="text-center">{{ movie.title }}</td>
+                  <td class="text-center">{{ movie.year }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </main>
 {% endblock %}

@@ -3,6 +3,7 @@ var express = require('express');
 var swig = require('swig');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
@@ -42,5 +43,23 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+const mongoose = require('mongoose');
+var url = 'mongodb+srv://rohana:rohana@tugas-bdt-kzw8o.mongodb.net/db?retryWrites=true';
+// var url = 'mongodb://db-master:27017,db-node1:27017,db-node2:27017/db?replicaSet=rs0';
+mongoose.Promise = global.Promise;
+
+// Connecting to the database
+mongoose.connect(url, {
+    useNewUrlParser: true
+}).then(() => {
+    console.log("Successfully connected to the database");    
+}).catch(err => {
+    console.log('Could not connect to the database. Exiting now...', err);
+    process.exit();
+});
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 module.exports = app;
