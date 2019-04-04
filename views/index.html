@@ -18,11 +18,12 @@
           </div>
       </div>
       <div class="table-responsive">
-          <table class="table" id="healthTable">
+          <table class="table" id="movieTable">
               <thead>
                   <tr>
                       <th class="text-center align-middle" style="width: 5%">Title</th>
                       <th class="text-center align-middle" style="width: 10%">Year</th>
+                      <th class="text-center align-middle" style="width: 5%">Action</th>
                   </tr>
               </thead>
               <tbody>
@@ -30,6 +31,12 @@
                 <tr>
                   <td class="text-center">{{ movie.title }}</td>
                   <td class="text-center">{{ movie.year }}</td>
+                  <td class="text-center">
+                      <a href='/{{ movie.id }}' style="margin-bottom: 5px;" class="btn btn-info"><i class="fa fa-edit small"></i></a>
+                      <form method="post" action="/delete/{{ movie.id }}">
+                          <button type="submit" class="btn btn-danger"><i class="fa fa-trash small"></i></button>
+                      </form>
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>

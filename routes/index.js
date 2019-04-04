@@ -10,5 +10,9 @@ var movieController = require('../controllers/movie.controller')
 router.get('/', movieController.listAllMovies);
 router.get('/add', movieController.addMovie);
 router.post('/create', movieController.createMovie);
+router.route('/:id')
+  .get(movieController.movieDetail)
+  .post(movieController.movieUpdate);
+router.post('/delete/:id', movieController.movieDelete);
 
 module.exports = router;
